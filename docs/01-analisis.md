@@ -13,7 +13,7 @@ La PYME cliente necesita desplegar su primera presencia web corporativa junto co
 - **Copias de Seguridad**: Automatización de backups de BBDD y archivos web con rotación y verificación.
 
 ## 1.3 Requisitos No Funcionales
-- **Disponibilidad**: 99.5% en horario comercial (08:00–18:00).
+- **Disponibilidad**: 99.6% en horario comercial (08:00–18:00).
 - **Seguridad**: Firewall restrictivo, actualizaciones automáticas de seguridad, aislamiento de servicios, cifrado TLS.
 - **Mantenibilidad**: Documentación clara, estructura modular, scripts de mantenimiento automatizados.
 - **Escalabilidad**: Diseño preparado para añadir balanceador de carga o réplica de BBDD en fases futuras.
