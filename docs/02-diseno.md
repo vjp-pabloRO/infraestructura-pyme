@@ -25,6 +25,7 @@
 | Netdata          | 1.38+        | Monitorización en tiempo real       |
 | UFW              | 0.36         | Firewall de aplicación              |
 | Certbot          | 2.x          | Certificados SSL/TLS automáticos    |
+| HAProxy          | 2.6          | Balanceador de carga y proxy inverso|
 
 ## 2.3 Esquema de Red y Puertos
 
