@@ -10,6 +10,7 @@ El despliegue de la infraestructura LAMP se divide en 5 fases secuenciales, con 
 | 2 | Preparación del servidor base | 2 días | Documentalista de Plataforma |
 | 3 | Instalación de servicios LAMP | 4 días | Documentalista de Plataforma |
 | 4 | Configuración de seguridad y monitorización | 3 días | Documentalista de Operaciones |
+| 4.5 | Configuración HAProxy | 2 días | Ambos |
 | 5 | Pruebas, documentación final y entrega | 4 días | Ambos |
 
 ## 3.2 Diagrama de Gantt
@@ -31,6 +32,8 @@ Fase 4:                                                      ██████�
 Seguridad/UFW                                                ████████
 Monitorización                                                       ████████
 Backups                                                              ████████
+Fase 4.5:                                                    ████████
+HAProxy                                                      ████████
 Fase 5:                                                                      ████████████████
 Pruebas                                                                      ████████
 Documentación                                                                        ████████
@@ -45,6 +48,7 @@ Entrega                                                                         
 | H2: Servidor base listo | Día 6 | Ubuntu instalado y actualizado |
 | H3: LAMP operativo | Día 10 | Web y BBDD accesibles |
 | H4: Seguridad configurada | Día 13 | Firewall, SSH y backups activos |
+| H4.5: Balanceador operativo | Día 12 | HAProxy configurado y probado |
 | H5: Entrega final | Día 15 | Documentación completa y pruebas OK |
 
 ## 3.4 Recursos Necesarios
