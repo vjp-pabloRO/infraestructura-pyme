@@ -19,7 +19,7 @@
 | Componente       | Versión      | Función                             |
 |------------------|--------------|-------------------------------------|
 | Ubuntu Server    | 22.04 LTS    | Sistema Operativo base              |
-| Apache           | 2.4.59       | Servidor Web y proxy inverso básico |
+| Apache           | 2.4.58       | Servidor Web y proxy inverso básico |
 | PHP              | 8.1          | Motor de ejecución para la web      |
 | MariaDB          | 10.6         | Gestor de Base de Datos             |
 | Netdata          | 1.38+        | Monitorización en tiempo real       |
