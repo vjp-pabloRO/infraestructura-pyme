@@ -57,3 +57,23 @@ journalctl --vacuum-time=30d
    ```bash
    sudo systemctl status apache2 mysql
    ```
+## Mantenimiento de HAProxy
+
+Al añadir el balanceador de carga, se incluyen las siguientes tareas en la rutina de operaciones:
+
+### Verificación de estado
+
+```bash
+sudo systemctl status haproxy
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+```
+
+### Logs y monitorización
+
+```bash
+sudo tail -f /var/log/haproxy.log
+```
+
+### Tareas de mantenimiento
+
+*   **Diaria:** Revisar el panel de estadísticas en `http://ip/haproxy?stats` para asegurar que los servidores backend están activos.

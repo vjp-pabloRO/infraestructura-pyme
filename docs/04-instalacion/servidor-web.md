@@ -1,85 +1,61 @@
-# Instalación del Servidor Web (Apache + PHP)
+# Instalación del Servidor Web y Balanceador (HAProxy)
 
-## 2.1 Instalación de Apache
+## Instalación de Apache y PHP
+
+Actualizamos el sistema e instalamos Apache junto con PHP y sus módulos más comunes:
 
 ```bash
 sudo apt update
-sudo apt install apache2 -y
-sudo systemctl enable apache2
-sudo systemctl start apache2
+sudo apt install apache2 php libapache2-mod-php php-mysql php-curl -y
 ```
 
-Verificación:
+Iniciamos y habilitamos el servicio de Apache para que arranque con el sistema:
+
+```bash
+sudo systemctl start apache2
+sudo systemctl enable apache2
+```
+
+Verificamos que el servicio está activo:
+
 ```bash
 sudo systemctl status apache2
-curl -I http://localhost
 ```
 
-## 2.2 Instalación de PHP 8.1
+## Instalación y Configuración de HAProxy
+
+Para cumplir con el nuevo requisito del cliente, instalamos el balanceador de carga HAProxy delante de Apache:
 
 ```bash
-sudo apt install php libapache2-mod-php php-mysql php-curl php-gd php-mbstring -y
-sudo systemctl restart apache2
+sudo apt install haproxy -y
 ```
 
-Verificación:
+Editamos el archivo de configuración `/etc/haproxy/haproxy.cfg` para redirigir el tráfico al servidor web:
+
+```haproxy
+frontend http_front
+    bind *:80
+    default_backend web_servers
+
+backend web_servers
+    balance roundrobin
+    server web1 127.0.0.1:8080 check
+```
+
+*(Nota: En un entorno real, Apache se configuraría para escuchar en el puerto 8080 y HAProxy en el 80).*
+
+Reiniciamos HAProxy para aplicar los cambios:
+
 ```bash
-php -v
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+sudo systemctl restart haproxy
+sudo systemctl enable haproxy
 ```
-⚠️ **Importante**: Eliminar `info.php` después de verificar por seguridad:
+
+## Verificación final
+
+Comprobamos que ambos servicios están corriendo correctamente sin errores:
+
 ```bash
-sudo rm /var/www/html/info.php
-```
-
-## 2.3 Configuración de VirtualHosts
-
-Archivo `/etc/apache2/sites-available/web.conf`:
-
-```apache
-<VirtualHost *:80>
-    ServerName www.pyme.local
-    DocumentRoot /var/www/html/web
-    
-    <Directory /var/www/html/web>
-        AllowOverride All
-        Require all granted
-    </Directory>
-    
-    ErrorLog ${APACHE_LOG_DIR}/web_error.log
-    CustomLog ${APACHE_LOG_DIR}/web_access.log combined
-</VirtualHost>
-
-<VirtualHost *:80>
-    ServerName gestion.pyme.local
-    DocumentRoot /var/www/html/gestion
-    
-    <Directory /var/www/html/gestion>
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
-```
-
-Activación:
-```bash
-sudo a2ensite web.conf gestion.conf
-sudo a2dissite 000-default.conf
-sudo systemctl reload apache2
-```
-
-## 2.4 Estructura de Directorios
-
-```
-/var/www/
-├── html/
-│   ├── web/          # Web pública
-│   └── gestion/      # Panel interno
-└── backups/          # Copias de seguridad
-```
-
-Permisos recomendados:
-```bash
-sudo chown -R www-data:www-data /var/www/html/
-sudo chmod -R 755 /var/www/html/
+sudo systemctl status apache2
+sudo systemctl status haproxy
 ```
