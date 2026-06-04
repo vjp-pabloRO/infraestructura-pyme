@@ -3,8 +3,8 @@
 Documentación técnica colaborativa para el despliegue de una infraestructura web corporativa con balanceador de carga, monitorización y copias de seguridad.
 
 ## 👥 Equipo
-- **Miembro A:** [Tu Nombre]
-- **Miembro B:** [Nombre de tu compañero]
+- **Miembro A:** Pablo Recio Oliva
+- **Miembro B:** Diego Recuero Barrado
 
 ## 📁 Documentación
 Toda la documentación técnica se encuentra en la carpeta `docs/`:
