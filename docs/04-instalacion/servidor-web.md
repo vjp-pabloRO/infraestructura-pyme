@@ -83,3 +83,10 @@ Permisos recomendados:
 sudo chown -R www-data:www-data /var/www/html/
 sudo chmod -R 755 /var/www/html/
 ```
+## 2.5 Configuración de HAProxy (Balanceador de Carga)
+
+### Instalación
+```bash
+sudo apt update
+sudo apt install haproxy -y
+sudo systemctl enable haproxy
